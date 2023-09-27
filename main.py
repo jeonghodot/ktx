@@ -4,6 +4,7 @@ from korail2 import *
 import telegram
 import time as timer
 import argparse
+import random
 
 if __name__ == "__main__":
     api_key = '5957545379:AAFAHTqrMAqMAWUsD9EkT3XvLcsu0snQgRV'
@@ -36,22 +37,23 @@ if __name__ == "__main__":
     seatType = args.seat
   
     for k in range(1, int(iter)+1):
-        # trains = srt.search_train(dep, arr, date, time, time_limit)
-        trains = korail.search_train(dep, arr, date, time, train_type=TrainType.KTX)
+        try: 
+            trains = korail.search_train(dep, arr, date, time, train_type=TrainType.KTX)
 
-        print("\r"+str(k), end="")
-        
-        for i in range(0, len(trains)):
-            print(trains[i])
-        j = 0
-        for j in range(0, len(trains)):
-            if seatType in str(trains[j]):
-                try:
-                    reservation = korail.reserve(trains[j])
-                    print(reservation)
-                    bot.sendMessage(chat_id=chatId, text="[KTX] " + str(reservation))
-                    continue
-                except:
-                    continue
-        timer.sleep(1)
-
+            print("\r"+str(k), end="")
+            
+            for i in range(0, len(trains)):
+                print(trains[i])
+            j = 0
+            for j in range(0, len(trains)):
+                if seatType in str(trains[j]):
+                    try:
+                        reservation = korail.reserve(trains[j])
+                        print(reservation)
+                        bot.sendMessage(chat_id=chatId, text="[KTX] " + str(reservation))
+                        continue
+                    except:
+                        continue
+            timer.sleep(random.uniform(0.0, 2.0))
+        except:
+            continue
