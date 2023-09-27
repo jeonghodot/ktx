@@ -13,7 +13,7 @@ if __name__ == "__main__":
     for item in bot.getUpdates():
         print(item)
     
-    parser = argparse.ArgumentParser(description='SRT Reservation')
+    parser = argparse.ArgumentParser(description='KTX Reservation')
     parser.add_argument('--id', default="")
     parser.add_argument('--pw', default="")
     parser.add_argument('--dep', default="서울")
@@ -57,3 +57,4 @@ if __name__ == "__main__":
             timer.sleep(random.uniform(0.0, 2.0))
         except:
             continue
+    bot.sendMessage(chat_id=chatId, text="[KTX] Reservation finished")
