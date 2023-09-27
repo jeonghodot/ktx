@@ -3,7 +3,7 @@ from korail2 import *
 
 if __name__ == "__main__":
     
-    korail = Korail("010-4442-5552", "Dighwjdgh3#")
+    korail = Korail("", "")
     
     reservations = korail.reservations()
     print(reservations)
